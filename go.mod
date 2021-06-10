@@ -1,3 +1,3 @@
-module github.com/haasin-farooq/golang-training/greetings
+module github.com/haasin-farooq/golang-training
 
 go 1.16
