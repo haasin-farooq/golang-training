@@ -15,10 +15,23 @@ import "fmt"
 // 	fmt.Printf("Now you have %v problems.\n", math.Sqrt(7))
 // }
 
-func add(x int, y int) int {
-	return x + y
+// func add(x int, y int) int {
+// 	return x + y
+// }
+
+// func add(x, y int) int {
+// 	return x + y
+// }
+
+// func main() {
+// 	fmt.Println(add(40, 22))
+// }
+
+func swap(x, y string) (string, string) {
+	return y, x
 }
 
 func main() {
-	fmt.Println(add(40, 22))
+	a, b := swap("hello", "world")
+	fmt.Println(a, b)
 }
