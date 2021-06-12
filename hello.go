@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // func main() {
 // 	fmt.Println("Hello, Haasin!")
@@ -36,13 +39,27 @@ import "fmt"
 // 	fmt.Println(a, b)
 // }
 
-func split(sum int) (x, y int) {
-	x = sum * 4/9
-	y = sum - x
+// func split(sum int) (x, y int) {
+// 	x = sum * 4/9
+// 	y = sum - x
 
-	return
+// 	return
+// }
+
+// func main() {
+// 	fmt.Println(split(70))
+// }
+
+func pow(x, n, lim float64) float64 {
+	if v := math.Pow(x, n); v < lim {
+		return v
+	}
+	return lim
 }
 
 func main() {
-	fmt.Println(split(70))
+	fmt.Println(
+		pow(3, 2, 10),
+		pow(3, 3, 20),
+	)
 }
