@@ -1,10 +1,6 @@
 package main
 
-import (
-	"strings"
-
-	"golang.org/x/tour/wc"
-)
+import "fmt"
 
 // func main() {
 // 	fmt.Println("Hello, Haasin!")
@@ -165,18 +161,38 @@ import (
 // 	pic.Show(Pic)
 // }
 
-func WordCount(s string) map[string]int {
-	m := make(map[string]int)
-	f := strings.Fields(s)
-	for _, v := range f {
-		m[v] = 0
+// func WordCount(s string) map[string]int {
+// 	m := make(map[string]int)
+// 	f := strings.Fields(s)
+// 	for _, v := range f {
+// 		m[v] = 0
+// 	}
+// 	for _, v := range f {
+// 		m[v] = m[v] + 1
+// 	}
+// 	return m
+// }
+
+// func main() {
+// 	wc.Test(WordCount)
+// }
+
+// fibonacci is a function that returns
+// a function that returns an int.
+func fibonacci() func() int {
+	prev := 0
+	num := 1
+	return func() int {
+		temp := num
+		num += prev
+		prev = temp
+		return num
 	}
-	for _, v := range f {
-		m[v] = m[v] + 1
-	}
-	return m
 }
 
 func main() {
-	wc.Test(WordCount)
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
 }
