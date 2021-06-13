@@ -105,14 +105,35 @@ import "fmt"
 // 	fmt.Println(j) // see the new value of j
 // }
 
-type Vertex struct {
-	X int
-	Y int
-}
+// type Vertex struct {
+// 	X int
+// 	Y int
+// }
+
+// func main() {
+// 	v := Vertex{1, 2}
+// 	p := &v
+// 	p.X = 1e9
+// 	fmt.Println(v)
+// }
 
 func main() {
-	v := Vertex{1, 2}
-	p := &v
-	p.X = 1e9
-	fmt.Println(v)
+	q := []int{2, 3, 5, 7, 11, 13}
+	fmt.Println(q)
+
+	r := []bool{true, true, false}
+	fmt.Println(r)
+
+	s := []struct{
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{5, true},
+		{7, true},
+		{11, false},
+		{13, true},
+	}
+	fmt.Println(s)
 }
