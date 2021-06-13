@@ -1,6 +1,10 @@
 package main
 
-import "golang.org/x/tour/pic"
+import (
+	"strings"
+
+	"golang.org/x/tour/wc"
+)
 
 // func main() {
 // 	fmt.Println("Hello, Haasin!")
@@ -149,14 +153,30 @@ import "golang.org/x/tour/pic"
 // 	}
 // }
 
-func Pic(dx, dy int) [][]uint8 {
-	s := make([][]uint8, dy)
-	for i := range s {
-		s[i] = make([]uint8, dx)
+// func Pic(dx, dy int) [][]uint8 {
+// 	s := make([][]uint8, dy)
+// 	for i := range s {
+// 		s[i] = make([]uint8, dx)
+// 	}
+// 	return s
+// }
+
+// func main() {
+// 	pic.Show(Pic)
+// }
+
+func WordCount(s string) map[string]int {
+	m := make(map[string]int)
+	f := strings.Fields(s)
+	for _, v := range f {
+		m[v] = 0
 	}
-	return s
+	for _, v := range f {
+		m[v] = m[v] + 1
+	}
+	return m
 }
 
 func main() {
-	pic.Show(Pic)
+	wc.Test(WordCount)
 }
