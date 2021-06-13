@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "golang.org/x/tour/pic"
 
 // func main() {
 // 	fmt.Println("Hello, Haasin!")
@@ -138,13 +138,25 @@ import "fmt"
 // 	fmt.Println(s)
 // }
 
-func main() {
-	pow := make([]int, 10)
+// func main() {
+// 	pow := make([]int, 10)
 
-	for i := range pow {
-		pow[i] = 1 << uint(i)
+// 	for i := range pow {
+// 		pow[i] = 1 << uint(i)
+// 	}
+// 	for _, v := range pow {
+// 		fmt.Println(v)
+// 	}
+// }
+
+func Pic(dx, dy int) [][]uint8 {
+	s := make([][]uint8, dy)
+	for i := range s {
+		s[i] = make([]uint8, dx)
 	}
-	for _, v := range pow {
-		fmt.Println(v)
-	}
+	return s
+}
+
+func main() {
+	pic.Show(Pic)
 }
