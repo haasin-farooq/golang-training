@@ -50,16 +50,47 @@ import (
 // 	fmt.Println(split(70))
 // }
 
-func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
-		return v
+// func pow(x, n, lim float64) float64 {
+// 	if v := math.Pow(x, n); v < lim {
+// 		return v
+// 	} else {
+// 		fmt.Printf("%g >= %g\n", v, lim)
+// 	}
+// 	return lim
+// }
+
+// func main() {
+// 	fmt.Println(
+// 		pow(3, 2, 10),
+// 		pow(3, 3, 20),
+// 	)
+// }
+
+// func Sqrt(x float64) float64 {
+// 	z := 1.0
+// 	fmt.Printf("x = %v\n", x)
+// 	for i := 0; i < 10; i++ {
+// 		z -= (z*z - x) / (2*z)
+// 		fmt.Printf("iteration: %v, z = %v\n", i + 1, z)
+// 	}
+// 	return z
+// }
+
+func Sqrt(x float64) float64 {
+	z := 1.0
+	var t float64
+	fmt.Printf("x = %v\n", x)
+	for {
+		z, t = z - (z*z - x) / (2*z), z
+		fmt.Printf("z = %v, t = %v\n", z, t)
+		if math.Abs(z-t) < 1e-6 {
+			break
+		}
 	}
-	return lim
+	return z
 }
 
 func main() {
-	fmt.Println(
-		pow(3, 2, 10),
-		pow(3, 3, 20),
-	)
+	fmt.Println(Sqrt(3))
+	fmt.Printf("Sqrt(x) = %v\n", math.Sqrt(3))
 }
