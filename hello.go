@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // func main() {
 // 	fmt.Println("Hello, Haasin!")
@@ -177,22 +180,42 @@ import "fmt"
 // 	wc.Test(WordCount)
 // }
 
-// fibonacci is a function that returns
-// a function that returns an int.
-func fibonacci() func() int {
-	prev := 0
-	num := 1
-	return func() int {
-		temp := num
-		num += prev
-		prev = temp
-		return num
-	}
+// // fibonacci is a function that returns
+// // a function that returns an int.
+// func fibonacci() func() int {
+// 	prev := 0
+// 	num := 1
+// 	return func() int {
+// 		temp := num
+// 		num += prev
+// 		prev = temp
+// 		return num
+// 	}
+// }
+
+// func main() {
+// 	f := fibonacci()
+// 	for i := 0; i < 10; i++ {
+// 		fmt.Println(f())
+// 	}
+// }
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X * v.X + v.Y * v.Y)
+}
+
+func (v *Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
 }
 
 func main() {
-	f := fibonacci()
-	for i := 0; i < 10; i++ {
-		fmt.Println(f())
-	}
+	v := Vertex{3, 4}
+	v.Scale(10)
+	fmt.Printf("v scaled by 10 = %v\n", v);
+	fmt.Printf("Absolute value of v = %v\n", v.Abs());
 }
