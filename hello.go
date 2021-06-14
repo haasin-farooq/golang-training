@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 // func main() {
@@ -220,36 +219,53 @@ import (
 // 	fmt.Printf("Absolute value of v = %v\n", v.Abs());
 // }
 
-type I interface {
-	M()
-}
+// type I interface {
+// 	M()
+// }
 
-type T struct {
-	S string
-}
+// type T struct {
+// 	S string
+// }
 
-func (t *T) M() { 
-	fmt.Println(t.S)
-}
+// func (t *T) M() {
+// 	fmt.Println(t.S)
+// }
 
-type F float64
+// type F float64
 
-func (f F) M() {
-	fmt.Println(f)
+// func (f F) M() {
+// 	fmt.Println(f)
+// }
+
+// func main() {
+// 	var i I
+
+// 	i = &T{"Hello"}
+// 	i.M()
+// 	describe(i)
+
+// 	i = F(math.Sqrt(2))
+// 	i.M()
+// 	describe(i)
+// }
+
+// func describe(i I) {
+// 	fmt.Printf("(%v, %T)\n", i, i)
+// }
+
+type IPAddr [4]byte
+
+// TODO: Add a "String() string" method to IPAddr.
+func (i IPAddr) String() string {
+	return fmt.Sprintf("%v.%v.%v.%v", i[0], i[1], i[2], i[3])
 }
 
 func main() {
-	var i I
-
-	i = &T{"Hello"}
-	i.M()
-	describe(i)
-
-	i = F(math.Sqrt(2))
-	i.M()
-	describe(i)
-}
-
-func describe(i I) {
-	fmt.Printf("(%v, %T)\n", i, i)
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+	}
 }
