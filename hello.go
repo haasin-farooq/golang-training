@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 // func main() {
@@ -253,19 +254,46 @@ import (
 // 	fmt.Printf("(%v, %T)\n", i, i)
 // }
 
-type IPAddr [4]byte
+// type IPAddr [4]byte
 
-// TODO: Add a "String() string" method to IPAddr.
-func (i IPAddr) String() string {
-	return fmt.Sprintf("%v.%v.%v.%v", i[0], i[1], i[2], i[3])
+// // TODO: Add a "String() string" method to IPAddr.
+// func (i IPAddr) String() string {
+// 	return fmt.Sprintf("%v.%v.%v.%v", i[0], i[1], i[2], i[3])
+// }
+
+// func main() {
+// 	hosts := map[string]IPAddr{
+// 		"loopback":  {127, 0, 0, 1},
+// 		"googleDNS": {8, 8, 8, 8},
+// 	}
+// 	for name, ip := range hosts {
+// 		fmt.Printf("%v: %v\n", name, ip)
+// 	}
+// }
+
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("cannot Sqrt negative number: %v", float64(e))
+}
+
+func Sqrt(x float64) (float64, error) {
+	if x < 0 {
+		return 0, ErrNegativeSqrt(x)
+	}
+	
+	z := 1.0
+	var t float64
+	for {
+ 		z, t = z - (z*z - x) / (2*z), z
+ 		if math.Abs(z-t) < 1e-6 {
+ 			break
+ 		}
+ 	}
+ 	return z, nil
 }
 
 func main() {
-	hosts := map[string]IPAddr{
-		"loopback":  {127, 0, 0, 1},
-		"googleDNS": {8, 8, 8, 8},
-	}
-	for name, ip := range hosts {
-		fmt.Printf("%v: %v\n", name, ip)
-	}
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
 }
