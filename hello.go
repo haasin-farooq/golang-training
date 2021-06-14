@@ -200,22 +200,56 @@ import (
 // 	}
 // }
 
-type Vertex struct {
-	X, Y float64
+// type Vertex struct {
+// 	X, Y float64
+// }
+
+// func (v Vertex) Abs() float64 {
+// 	return math.Sqrt(v.X * v.X + v.Y * v.Y)
+// }
+
+// func (v *Vertex) Scale(f float64) {
+// 	v.X = v.X * f
+// 	v.Y = v.Y * f
+// }
+
+// func main() {
+// 	v := Vertex{3, 4}
+// 	v.Scale(10)
+// 	fmt.Printf("v scaled by 10 = %v\n", v);
+// 	fmt.Printf("Absolute value of v = %v\n", v.Abs());
+// }
+
+type I interface {
+	M()
 }
 
-func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X * v.X + v.Y * v.Y)
+type T struct {
+	S string
 }
 
-func (v *Vertex) Scale(f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
+func (t *T) M() { 
+	fmt.Println(t.S)
+}
+
+type F float64
+
+func (f F) M() {
+	fmt.Println(f)
 }
 
 func main() {
-	v := Vertex{3, 4}
-	v.Scale(10)
-	fmt.Printf("v scaled by 10 = %v\n", v);
-	fmt.Printf("Absolute value of v = %v\n", v.Abs());
+	var i I
+
+	i = &T{"Hello"}
+	i.M()
+	describe(i)
+
+	i = F(math.Sqrt(2))
+	i.M()
+	describe(i)
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }
